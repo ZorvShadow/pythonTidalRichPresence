@@ -1,0 +1,3 @@
+# pythonTidalRichPresence
+
+still in progress
