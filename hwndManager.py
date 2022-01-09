@@ -1,3 +1,4 @@
+from logging import error
 import time
 import wmi
 import win32gui
@@ -16,9 +17,14 @@ def findTidalPIDs():
     for process in f.Win32_Process():        
         if process.Name == "TIDAL.exe":
             pidList.append(process.ProcessID)
-    print("Tidal PIDs found: ", pidList)
-    time.sleep(0.5)
-    return pidList
+    if pidList:
+      print("Tidal PIDs found: ", pidList)
+      time.sleep(0.5)
+      return pidList
+    else:
+      print("Tidal.exe was not found, exiting program...")
+      time.sleep(1)
+      raise Exception('Tidal.exe was not found')
 
         
 def get_hwnds_for_pid (pid):
